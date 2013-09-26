@@ -29,6 +29,7 @@ module Randomuserme
       return false if !response.parsed_response
       reply = Randomuser.new
       reply.gender = response.parsed_response['gender']
+      reply.email = response.parsed_response['email']
       return reply
       end
     
