@@ -1,5 +1,6 @@
 require 'randomuser/location/coordinates'
 require 'randomuser/location/street'
+require 'randomuser/location/timezone'
 
 class Randomuser
   class Location
@@ -7,7 +8,17 @@ class Randomuser
     attr_accessor :coordinates, :timezone
 
     def initialize
-      self.coordinates = Randomuser::Location::Coordinates.new
+      self.coordinates = Coordinates.new
+      self.street = Street.new
+    end
+
+    def ==(other)
+      return false unless other.is_a?(self.class)
+      (self.street == other.street) && (self.city == other.city) && (self.zip == other.zip) && (self.postcode == other.postcode) && (self.coordinates == other.coordinates) && (self.timezone == other.timezone)
+    end
+
+    def eql?(other)
+      (self == other)
     end
 
     def self.from_json(json_data)
@@ -20,8 +31,16 @@ class Randomuser
       l.zip = json_data[zip_key]
       l.postcode = json_data[zip_key]
       l.coordinates = Coordinates.from_json(json_data['coordinates'])
-      #l.timezone = Timezone.from_json(json_data['timezone'])
+      l.timezone = Timezone.from_json(json_data['timezone'])
       l
+    end
+
+    def valid?
+      true
+    end
+
+    def validate
+      throw StandardError.new unless self.valid?
     end
   end
 end

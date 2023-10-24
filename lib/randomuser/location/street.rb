@@ -5,11 +5,26 @@ class Randomuser
 
           def self.from_json(json_data)
             s = Street.new
-            s_num = json_data['number']
-            # TODO: parse into number if possible
-            s.number = s_num
+            s.number = json_data['number']
             s.name = json_data['name']
             s
+          end
+
+          def ==(other)
+            return false unless other.is_a?(self.class)
+            (self.number == other.number) && (self.name == other.name)
+          end
+
+          def eql?(other)
+            (self == other)
+          end
+
+          def valid?
+            !(self.number.nil? || self.name.nil?)
+          end
+
+          def validate
+            throw StandardError.new unless self.valid?
           end
       end
   end

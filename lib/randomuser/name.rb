@@ -2,6 +2,14 @@ class Randomuser
   class Name
     attr_accessor :title, :first, :last
 
+    def ==(other)
+      (self.title == other.title) && (self.first == other.first) && (self.last == other.last)
+    end
+
+    def eql?(other)
+      (self == other)
+    end
+
     def self.from_json(json_data)
       p = Name.new
       p.title = json_data['title']

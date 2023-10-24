@@ -1,20 +1,20 @@
 
 class Randomuser
     class Location
-        class Coordinates
-            attr_accessor :latitude, :longitude
+        class Timezone
+            attr_accessor :offset, :description
 
             def self.from_json(json_data)
-              c = Coordinates.new
-              c.latitude = json_data['latitude'].to_f
-              c.longitude = json_data['longitude'].to_f
+              c = Timezone.new
+              c.offset = json_data['offset'].to_f
+              c.description = json_data['description']
               c.validate
               c
             end
 
             def ==(other)
               return false unless other.is_a?(self.class)
-              (self.latitude == other.latitude) && (self.longitude == other.longitude)
+              (self.offset == other.offset) && (self.description == other.description)
             end
 
             def eql?(other)
@@ -22,7 +22,7 @@ class Randomuser
             end
 
             def valid?
-              !(self.latitude.nil? || self.longitude.nil?)
+              !(self.offset.nil? || self.description.nil?)
             end
 
             def validate
