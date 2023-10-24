@@ -5,10 +5,8 @@ require "httparty"
 module Randomuserme
   class Client
     include HTTParty
-    
-    api_base = 'http://api.randomuser.me'
-    
-    base_uri uri
+
+    base_uri 'api.randomuser.me'
     
     format :json
     
@@ -28,8 +26,14 @@ module Randomuserme
     def self.form_response(response)
       return false if !response.parsed_response
       reply = Randomuser.new
-      reply.gender = response.parsed_response['gender']
-      reply.email = response.parsed_response['email']
+      response_user = response.parsed_response['results'].first
+      
+      reply.gender = response_user['gender']
+      reply.email = response_user['email']
+
+      reply.name.title = response_user['name']['title']
+      reply.name.first = response_user['name']['first']
+      reply.name.last = response_user['name']['last']
       return reply
       end
     

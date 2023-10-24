@@ -25,4 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.12.0"
   spec.add_development_dependency "simplecov", "~> 0.22.0"
   spec.add_development_dependency "simplecov-rcov", "~> 0.3.3"
+  spec.add_development_dependency 'yard', '~> 0.9.34'
+  spec.add_development_dependency 'redcarpet', '~> 3.6.0'
+  spec.add_development_dependency 'rdoc', '~> 6.5.0'
 end
