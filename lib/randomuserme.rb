@@ -1,17 +1,28 @@
 require 'randomuserme/version'
 require 'randomuser'
-require 'uri'
-require 'net/http'
+#require 'uri'
+#require 'net/http'
 require 'httparty'
-require 'multi_json'
+#require 'multi_json'
 
 module Randomuserme
+
+  def self.random_user(seed = nil)
+    if seed.nil?
+      Client.random
+    else
+      Client.seeded(seed)
+    end
+  end
+
   class Client
     include HTTParty
 
     base_uri 'api.randomuser.me'
 
     format :json
+
+    private
 
     def self.random
       response = get('/')
@@ -24,8 +35,6 @@ module Randomuserme
       response = get("/?seed=#{seed}")
       form_response(response)
     end
-
-    private
 
     #def self.get(path)
     #  uri = URI('https://api.randomuser.me' + path)
@@ -47,6 +56,5 @@ module Randomuserme
       #reply.name.last = response_user['name']['last']
       return Randomuser.from_json(response_user)
       end
-
   end
 end
