@@ -1,4 +1,4 @@
-Copyright (c) 2013 Jan Lindblom
+Copyright (c) 2023 Jan Lindblom
 
 MIT License
 

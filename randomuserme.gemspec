@@ -18,12 +18,11 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "httparty", "~> 0.11.0"
-  spec.add_dependency "multi_json", "~> 1.8.0"
+  spec.add_dependency "httparty", "~> 0.21.0"
+  spec.add_dependency "multi_json", "~> 1.15.0"
 
-  spec.add_development_dependency "bundler", "~> 1.3.5"
-  spec.add_development_dependency "rake", "~> 10.1.0"
-  spec.add_development_dependency "rspec", "~> 2.14.1"
-  spec.add_development_dependency "simplecov", "~> 0.7.1"
-  spec.add_development_dependency "simplecov-rcov", "~> 0.2.3"
+  spec.add_development_dependency "rake", "~> 13.0.6"
+  spec.add_development_dependency "rspec", "~> 3.12.0"
+  spec.add_development_dependency "simplecov", "~> 0.22.0"
+  spec.add_development_dependency "simplecov-rcov", "~> 0.3.3"
 end
