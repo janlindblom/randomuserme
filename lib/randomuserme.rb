@@ -1,6 +1,9 @@
 require 'randomuserme/version'
 require 'randomuser'
-require "httparty"
+require 'uri'
+require 'net/http'
+require 'httparty'
+require 'multi_json'
 
 module Randomuserme
   class Client
@@ -12,6 +15,7 @@ module Randomuserme
 
     def self.random
       response = get('/')
+      #return false if response.nil?
       return false if !response.parsed_response
       form_response(response)
     end
@@ -23,8 +27,15 @@ module Randomuserme
 
     private
 
+    #def self.get(path)
+    #  uri = URI('https://api.randomuser.me' + path)
+    #  res = Net::HTTP.get_response(uri)
+    #  return res.body if res.is_a?(Net::HTTPSuccess)
+    #  return nil
+    #end
+
     def self.form_response(response)
-      return false if !response.parsed_response
+      #return false if !response.parsed_response
       #reply = Randomuser.new
       response_user = response.parsed_response['results'].first
 
