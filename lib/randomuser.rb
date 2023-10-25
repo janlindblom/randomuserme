@@ -14,7 +14,12 @@ class Randomuser
     self.location = Randomuser::Location.new
   end
 
+  # Compare this Randomuser to another Randomuser object.
+  #
+  # @param other [Randomuser] the other object
+  # @return true or false
   def ==(other)
+    return false unless other.is_a?(self.class)
     return false unless (self.gender == other.gender) && (self.email == other.email) && (self.phone == other.phone) && (self.cell == other.cell) && (self.nat == other.nat)
     return false unless (self.name == other.name)
     return false unless (self.location == other.location)
@@ -30,6 +35,11 @@ class Randomuser
     (self == other)
   end
 
+  # Create a Randomuser object from JSON data returned from the randomuser.me
+  #   API.
+  #
+  # @param json_data [Hash] parsed JSON data
+  # @return [Randomuser] a Randomuser object
   def self.from_json(json_data)
     u = Randomuser.new
     u.gender = json_data['gender']

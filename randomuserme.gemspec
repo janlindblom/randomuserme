@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "randomuserme"
   spec.version       = Randomuserme::VERSION
   spec.authors       = ["Jan Lindblom"]
-  spec.email         = ["jan@nyfagel.se"]
+  spec.email         = ["janlindblom@fastmail.fm"]
   spec.description   = %q{Get random users from randomuser.me}
   spec.summary       = %q{Get random users from randomuser.me}
   spec.homepage      = ""
@@ -17,7 +17,6 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
-  spec.extensions    = 'ext/mkrf_conf.rb'
 
   spec.add_dependency "httparty", "~> 0.21.0"
   spec.add_dependency "multi_json", "~> 1.15.0"
