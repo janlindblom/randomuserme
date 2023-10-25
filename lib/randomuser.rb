@@ -17,7 +17,7 @@ class Randomuser
     return false unless (self.gender == other.gender) && (self.email == other.email) && (self.phone == other.phone) && (self.cell == other.cell) && (self.nat == other.nat)
     return false unless (self.name == other.name)
     return false unless (self.location == other.location)
-    #return false unless (self.login == other.login)
+    return false unless (self.login == other.login)
     #return false unless (self.picture == other.picture)
     #return false unless (self.dob == other.dob)
     #return false unless (self.registered == other.registered)

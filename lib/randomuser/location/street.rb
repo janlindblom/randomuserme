@@ -7,6 +7,7 @@ class Randomuser
             s = Street.new
             s.number = json_data['number']
             s.name = json_data['name']
+            s.validate
             s
           end
 

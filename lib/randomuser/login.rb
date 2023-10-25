@@ -12,7 +12,17 @@ class Randomuser
       l.salt = json_data['salt']
       l.sha1 = json_data['sha1']
       l.sha256 = json_data['sha256']
+      l.validate
       l
+    end
+
+    def ==(other)
+      return false unless other.is_a?(self.class)
+      (self.uuid == other.uuid) && (self.username == other.username) && (self.password == other.password) && (self.md5 == other.md5) && (self.salt == other.salt) && (self.sha1 == other.sha1) && (self.sha256 == other.sha256)
+    end
+
+    def eql?(other)
+      (self == other)
     end
 
     def valid?

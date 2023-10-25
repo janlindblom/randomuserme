@@ -32,6 +32,7 @@ class Randomuser
       l.postcode = json_data[zip_key]
       l.coordinates = Coordinates.from_json(json_data['coordinates'])
       l.timezone = Timezone.from_json(json_data['timezone'])
+      l.validate
       l
     end
 
