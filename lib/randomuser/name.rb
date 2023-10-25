@@ -10,6 +10,14 @@ class Randomuser
       (self == other)
     end
 
+    def valid?
+      !(self.title.nil? || self.first.nil? || self.last.nil?)
+    end
+
+    def validate
+      throw StandardError.new unless self.valid?
+    end
+
     def self.from_json(json_data)
       p = Name.new
       p.title = json_data['title']

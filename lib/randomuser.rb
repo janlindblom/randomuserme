@@ -4,6 +4,7 @@ require 'randomuser/picture'
 require 'randomuser/login'
 require 'date'
 
+# A random user object
 class Randomuser
   attr_accessor :gender, :name, :location, :email, :login, :phone, :cell, :picture
   attr_accessor :dob, :registered, :id, :nat
@@ -18,7 +19,7 @@ class Randomuser
     return false unless (self.name == other.name)
     return false unless (self.location == other.location)
     return false unless (self.login == other.login)
-    #return false unless (self.picture == other.picture)
+    return false unless (self.picture == other.picture)
     #return false unless (self.dob == other.dob)
     #return false unless (self.registered == other.registered)
     #return false unless (self.id == other.id)

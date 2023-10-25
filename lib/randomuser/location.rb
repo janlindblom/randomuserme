@@ -10,6 +10,7 @@ class Randomuser
     def initialize
       self.coordinates = Coordinates.new
       self.street = Street.new
+      self.timezone = Timezone.new
     end
 
     def ==(other)
@@ -19,6 +20,14 @@ class Randomuser
 
     def eql?(other)
       (self == other)
+    end
+
+    def valid?
+      !(self.street.nil? || self.city.nil? || self.state.nil? || self.zip.nil? || self.postcode.nil? || self.coordinates.nil? || self.timezone.nil?) && self.coordinates.valid? && self.street.valid? && self.timezone.valid?
+    end
+
+    def validate
+      throw StandardError.new unless self.valid?
     end
 
     def self.from_json(json_data)
@@ -34,14 +43,6 @@ class Randomuser
       l.timezone = Timezone.from_json(json_data['timezone'])
       l.validate
       l
-    end
-
-    def valid?
-      true
-    end
-
-    def validate
-      throw StandardError.new unless self.valid?
     end
   end
 end

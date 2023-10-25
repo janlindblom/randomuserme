@@ -4,14 +4,6 @@ class Randomuser
         class Coordinates
             attr_accessor :latitude, :longitude
 
-            def self.from_json(json_data)
-              c = Coordinates.new
-              c.latitude = json_data['latitude'].to_f
-              c.longitude = json_data['longitude'].to_f
-              c.validate
-              c
-            end
-
             def ==(other)
               return false unless other.is_a?(self.class)
               (self.latitude == other.latitude) && (self.longitude == other.longitude)
@@ -27,6 +19,14 @@ class Randomuser
 
             def validate
               throw StandardError.new unless self.valid?
+            end
+
+            def self.from_json(json_data)
+              c = Coordinates.new
+              c.latitude = json_data['latitude'].to_f
+              c.longitude = json_data['longitude'].to_f
+              c.validate
+              c
             end
         end
     end

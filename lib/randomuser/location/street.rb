@@ -3,14 +3,6 @@ class Randomuser
       class Street
           attr_accessor :number, :name
 
-          def self.from_json(json_data)
-            s = Street.new
-            s.number = json_data['number']
-            s.name = json_data['name']
-            s.validate
-            s
-          end
-
           def ==(other)
             return false unless other.is_a?(self.class)
             (self.number == other.number) && (self.name == other.name)
@@ -26,6 +18,14 @@ class Randomuser
 
           def validate
             throw StandardError.new unless self.valid?
+          end
+
+          def self.from_json(json_data)
+            s = Street.new
+            s.number = json_data['number']
+            s.name = json_data['name']
+            s.validate
+            s
           end
       end
   end
