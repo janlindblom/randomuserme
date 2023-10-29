@@ -1,12 +1,12 @@
-require 'randomuserme/version'
-require 'randomuser'
+require 'random_user_me/version'
+require 'random_user'
 #require 'uri'
 #require 'net/http'
 require 'httparty'
 #require 'multi_json'
 
 # The randomuser.me interface main module.
-module Randomuserme
+module RandomUserMe
   include HTTParty
 
   base_uri 'api.randomuser.me'
@@ -57,6 +57,6 @@ module Randomuserme
     #reply.name.title = response_user['name']['title']
     #reply.name.first = response_user['name']['first']
     #reply.name.last = response_user['name']['last']
-    return Randomuser.from_json(response_user)
+    return RandomUser.from_json(response_user)
   end
 end

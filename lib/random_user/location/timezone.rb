@@ -1,5 +1,5 @@
 
-class Randomuser
+class RandomUser
     class Location
         class Timezone
             attr_accessor :offset, :description

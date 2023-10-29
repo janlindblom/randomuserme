@@ -1,5 +1,5 @@
 
-class Randomuser
+class RandomUser
   class Login
     attr_accessor :uuid, :username, :password, :salt, :md5, :sha1, :sha256
 

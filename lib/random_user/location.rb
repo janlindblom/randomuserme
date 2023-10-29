@@ -1,8 +1,8 @@
-require 'randomuser/location/coordinates'
-require 'randomuser/location/street'
-require 'randomuser/location/timezone'
+require 'random_user/location/coordinates'
+require 'random_user/location/street'
+require 'random_user/location/timezone'
 
-class Randomuser
+class RandomUser
   class Location
     attr_accessor :street, :city, :state, :zip, :postcode
     attr_accessor :coordinates, :timezone

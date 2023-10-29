@@ -1,4 +1,4 @@
-class Randomuser
+class RandomUser
   class Location
       class Street
           attr_accessor :number, :name

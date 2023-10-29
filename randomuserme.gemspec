@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'randomuserme/version'
+require 'random_user_me/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "randomuserme"
-  spec.version       = Randomuserme::VERSION
+  spec.version       = RandomUserMe::VERSION
   spec.authors       = ["Jan Lindblom"]
   spec.email         = ["janlindblom@fastmail.fm"]
   spec.description   = %q{Get random users from randomuser.me}

@@ -1,22 +1,22 @@
-require 'randomuser/name'
-require 'randomuser/location'
-require 'randomuser/picture'
-require 'randomuser/login'
+require 'random_user/name'
+require 'random_user/location'
+require 'random_user/picture'
+require 'random_user/login'
 require 'date'
 
 # A random user object
-class Randomuser
+class RandomUser
   attr_accessor :gender, :name, :location, :email, :login, :phone, :cell, :picture
   attr_accessor :dob, :registered, :id, :nat
 
   def initialize
-    self.name = Randomuser::Name.new
-    self.location = Randomuser::Location.new
+    self.name = RandomUser::Name.new
+    self.location = RandomUser::Location.new
   end
 
-  # Compare this Randomuser to another Randomuser object.
+  # Compare this RandomUser to another RandomUser object.
   #
-  # @param other [Randomuser] the other object
+  # @param other [RandomUser] the other object
   # @return true or false
   def ==(other)
     return false unless other.is_a?(self.class)
@@ -35,25 +35,25 @@ class Randomuser
     (self == other)
   end
 
-  # Create a Randomuser object from JSON data returned from the randomuser.me
+  # Create a RandomUser object from JSON data returned from the randomuser.me
   #   API.
   #
   # @param json_data [Hash] parsed JSON data
-  # @return [Randomuser] a Randomuser object
+  # @return [RandomUser] a RandomUser object
   def self.from_json(json_data)
-    u = Randomuser.new
+    u = RandomUser.new
     u.gender = json_data['gender']
-    u.name = Randomuser::Name.from_json(json_data['name'])
-    u.location = Randomuser::Location.from_json(json_data['location'])
+    u.name = RandomUser::Name.from_json(json_data['name'])
+    u.location = RandomUser::Location.from_json(json_data['location'])
     u.email = json_data['email']
-    u.login = Randomuser::Login.from_json(json_data['login'])
+    u.login = RandomUser::Login.from_json(json_data['login'])
     u.phone = json_data['phone']
     u.cell = json_data['cell']
     u.dob = DateTime.parse(json_data['dob']['date'])
     u.registered = DateTime.parse(json_data['registered']['date'])
     u.id = json_data['id']
     u.nat = json_data['nat']
-    u.picture = Randomuser::Picture.from_json(json_data['picture'])
+    u.picture = RandomUser::Picture.from_json(json_data['picture'])
     u
   end
 end

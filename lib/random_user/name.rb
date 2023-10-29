@@ -1,4 +1,4 @@
-class Randomuser
+class RandomUser
   class Name
     attr_accessor :title, :first, :last
 

@@ -6,7 +6,7 @@ require 'simplecov-rcov'
 SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
 SimpleCov.start
 
-require 'randomuserme'
+require 'random_user_me'
 
 RSpec.configure do |config|
   #config.run_all_when_everything_filtered = true

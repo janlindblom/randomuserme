@@ -1,7 +1,7 @@
 require 'uri'
 
-class Randomuser
-  # A picture object for a Randomuser object.
+class RandomUser
+  # A picture object for a RandomUser object.
   class Picture
     attr_accessor :large, :medium, :thumbnail
 
