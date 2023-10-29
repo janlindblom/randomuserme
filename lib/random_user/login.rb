@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 class RandomUser
   class Login
@@ -5,7 +6,8 @@ class RandomUser
 
     def ==(other)
       return false unless other.is_a?(self.class)
-      (self.uuid == other.uuid) && (self.username == other.username) && (self.password == other.password) && (self.md5 == other.md5) && (self.salt == other.salt) && (self.sha1 == other.sha1) && (self.sha256 == other.sha256)
+
+      (uuid == other.uuid) && (username == other.username) && (password == other.password) && (md5 == other.md5) && (salt == other.salt) && (sha1 == other.sha1) && (sha256 == other.sha256)
     end
 
     def eql?(other)
@@ -13,11 +15,11 @@ class RandomUser
     end
 
     def valid?
-      !(self.uuid.nil? || self.username.nil? || self.password.nil? || self.md5.nil? || self.salt.nil? || self.sha1.nil? || self.sha256.nil?)
+      !(uuid.nil? || username.nil? || password.nil? || md5.nil? || salt.nil? || sha1.nil? || sha256.nil?)
     end
 
     def validate
-      throw StandardError.new unless self.valid?
+      throw StandardError.new unless valid?
     end
 
     def self.from_json(json_data)

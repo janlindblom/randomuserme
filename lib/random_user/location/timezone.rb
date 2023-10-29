@@ -1,33 +1,35 @@
+# frozen_string_literal: true
 
 class RandomUser
-    class Location
-        class Timezone
-            attr_accessor :offset, :description
+  class Location
+    class Timezone
+      attr_accessor :offset, :description
 
-            def ==(other)
-              return false unless other.is_a?(self.class)
-              (self.offset == other.offset) && (self.description == other.description)
-            end
+      def ==(other)
+        return false unless other.is_a?(self.class)
 
-            def eql?(other)
-              (self == other)
-            end
+        (offset == other.offset) && (description == other.description)
+      end
 
-            def valid?
-              !(self.offset.nil? || self.description.nil?)
-            end
+      def eql?(other)
+        (self == other)
+      end
 
-            def validate
-              throw StandardError.new unless self.valid?
-            end
+      def valid?
+        !(offset.nil? || description.nil?)
+      end
 
-            def self.from_json(json_data)
-              c = Timezone.new
-              c.offset = json_data['offset'].to_f
-              c.description = json_data['description']
-              c.validate
-              c
-            end
-        end
+      def validate
+        throw StandardError.new unless valid?
+      end
+
+      def self.from_json(json_data)
+        c = Timezone.new
+        c.offset = json_data['offset'].to_f
+        c.description = json_data['description']
+        c.validate
+        c
+      end
     end
+  end
 end

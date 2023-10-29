@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'random_user/name'
 require 'random_user/location'
 require 'random_user/picture'
@@ -6,8 +8,7 @@ require 'date'
 
 # A random user object
 class RandomUser
-  attr_accessor :gender, :name, :location, :email, :login, :phone, :cell, :picture
-  attr_accessor :dob, :registered, :id, :nat
+  attr_accessor :gender, :name, :location, :email, :login, :phone, :cell, :picture, :dob, :registered, :id, :nat
 
   def initialize
     self.name = RandomUser::Name.new
@@ -20,14 +21,18 @@ class RandomUser
   # @return true or false
   def ==(other)
     return false unless other.is_a?(self.class)
-    return false unless (self.gender == other.gender) && (self.email == other.email) && (self.phone == other.phone) && (self.cell == other.cell) && (self.nat == other.nat)
-    return false unless (self.name == other.name)
-    return false unless (self.location == other.location)
-    return false unless (self.login == other.login)
-    return false unless (self.picture == other.picture)
-    #return false unless (self.dob == other.dob)
-    #return false unless (self.registered == other.registered)
-    #return false unless (self.id == other.id)
+    unless (gender == other.gender) && (email == other.email) && (phone == other.phone) && (cell == other.cell) &&
+           (nat == other.nat)
+      return false
+    end
+    return false unless name == other.name
+    return false unless location == other.location
+    return false unless login == other.login
+    return false unless picture == other.picture
+
+    # return false unless (self.dob == other.dob)
+    # return false unless (self.registered == other.registered)
+    # return false unless (self.id == other.id)
     true
   end
 

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class RandomUser
   class Name
     attr_accessor :title, :first, :last
 
     def ==(other)
-      (self.title == other.title) && (self.first == other.first) && (self.last == other.last)
+      (title == other.title) && (first == other.first) && (last == other.last)
     end
 
     def eql?(other)
@@ -11,11 +13,11 @@ class RandomUser
     end
 
     def valid?
-      !(self.title.nil? || self.first.nil? || self.last.nil?)
+      !(title.nil? || first.nil? || last.nil?)
     end
 
     def validate
-      throw StandardError.new unless self.valid?
+      throw StandardError.new unless valid?
     end
 
     def self.from_json(json_data)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'uri'
 
 class RandomUser
@@ -6,7 +8,7 @@ class RandomUser
     attr_accessor :large, :medium, :thumbnail
 
     def ==(other)
-      (self.large == other.large) && (self.medium == other.medium) && (self.thumbnail == other.thumbnail)
+      (large == other.large) && (medium == other.medium) && (thumbnail == other.thumbnail)
     end
 
     def eql?(other)
@@ -14,11 +16,11 @@ class RandomUser
     end
 
     def valid?
-      !(self.large.nil? || self.medium.nil? || self.thumbnail.nil?)
+      !(large.nil? || medium.nil? || thumbnail.nil?)
     end
 
     def validate
-      throw StandardError.new unless self.valid?
+      throw StandardError.new unless valid?
     end
 
     def self.from_json(json_data)

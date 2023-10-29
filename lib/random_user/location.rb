@@ -1,11 +1,12 @@
+# frozen_string_literal: true
+
 require 'random_user/location/coordinates'
 require 'random_user/location/street'
 require 'random_user/location/timezone'
 
 class RandomUser
   class Location
-    attr_accessor :street, :city, :state, :zip, :postcode
-    attr_accessor :coordinates, :timezone
+    attr_accessor :street, :city, :state, :zip, :postcode, :coordinates, :timezone
 
     def initialize
       self.coordinates = Coordinates.new
@@ -15,7 +16,8 @@ class RandomUser
 
     def ==(other)
       return false unless other.is_a?(self.class)
-      (self.street == other.street) && (self.city == other.city) && (self.zip == other.zip) && (self.postcode == other.postcode) && (self.coordinates == other.coordinates) && (self.timezone == other.timezone)
+
+      (street == other.street) && (city == other.city) && (zip == other.zip) && (postcode == other.postcode) && (coordinates == other.coordinates) && (timezone == other.timezone)
     end
 
     def eql?(other)
@@ -23,16 +25,16 @@ class RandomUser
     end
 
     def valid?
-      !(self.street.nil? || self.city.nil? || self.state.nil? || self.zip.nil? || self.postcode.nil? || self.coordinates.nil? || self.timezone.nil?) && self.coordinates.valid? && self.street.valid? && self.timezone.valid?
+      !(street.nil? || city.nil? || state.nil? || zip.nil? || postcode.nil? || coordinates.nil? || timezone.nil?) && coordinates.valid? && street.valid? && timezone.valid?
     end
 
     def validate
-      throw StandardError.new unless self.valid?
+      throw StandardError.new unless valid?
     end
 
     def self.from_json(json_data)
       zip_key = 'zip'
-      zip_key = 'postcode' unless json_data.has_key?('zip')
+      zip_key = 'postcode' unless json_data.key?('zip')
       l = Location.new
       l.street = Street.from_json(json_data['street'])
       l.city = json_data['city']

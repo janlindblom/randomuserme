@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'random_user_me/version'
 require 'random_user'
-#require 'uri'
-#require 'net/http'
+# require 'uri'
+# require 'net/http'
 require 'httparty'
-#require 'multi_json'
+# require 'multi_json'
 
 # The randomuser.me interface main module.
 module RandomUserMe
@@ -25,38 +27,32 @@ module RandomUserMe
     end
   end
 
-  private
-
   def self.random
     response = get('/')
-    #return false if response.nil?
-    return false if !response.parsed_response
+    return false if response.nil?
+    return false unless response.parsed_response
+
     form_response(response)
   end
 
   def self.seeded(seed)
     response = get("/?seed=#{seed}")
+    return false if response.nil?
+    return false unless response.parsed_response
+
     form_response(response)
   end
 
-  #def self.get(path)
+  # def self.get(path)
   #  uri = URI('https://api.randomuser.me' + path)
   #  res = Net::HTTP.get_response(uri)
   #  return res.body if res.is_a?(Net::HTTPSuccess)
   #  return nil
-  #end
+  # end
 
   def self.form_response(response)
-    #return false if !response.parsed_response
-    #reply = Randomuser.new
     response_user = response.parsed_response['results'].first
 
-    #reply.gender = response_user['gender']
-    #reply.email = response_user['email']
-
-    #reply.name.title = response_user['name']['title']
-    #reply.name.first = response_user['name']['first']
-    #reply.name.last = response_user['name']['last']
-    return RandomUser.from_json(response_user)
+    RandomUser.from_json(response_user)
   end
 end
