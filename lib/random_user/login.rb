@@ -7,7 +7,9 @@ class RandomUser
     def ==(other)
       return false unless other.is_a?(self.class)
 
-      (uuid == other.uuid) && (username == other.username) && (password == other.password) && (md5 == other.md5) && (salt == other.salt) && (sha1 == other.sha1) && (sha256 == other.sha256)
+      %w[uuid username password salt md5 sha1 sha256].each do |key|
+        return false unless send(key.to_sym) == other.send(key.to_sym)
+      end
     end
 
     def eql?(other)
@@ -24,13 +26,9 @@ class RandomUser
 
     def self.from_json(json_data)
       l = Login.new
-      l.uuid = json_data['uuid']
-      l.username = json_data['username']
-      l.password = json_data['password']
-      l.md5 = json_data['md5']
-      l.salt = json_data['salt']
-      l.sha1 = json_data['sha1']
-      l.sha256 = json_data['sha256']
+      %w[uuid username password salt md5 sha1 sha256].each do |key|
+        l.send "#{key}=", json_data[key]
+      end
       l.validate
       l
     end

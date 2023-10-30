@@ -29,7 +29,7 @@ module RandomUserMe
 
   def self.random
     response = get('/')
-    return false if response.nil?
+    return false if response.body.nil? || response.body.empty?
     return false unless response.parsed_response
 
     form_response(response)
@@ -37,7 +37,7 @@ module RandomUserMe
 
   def self.seeded(seed)
     response = get("/?seed=#{seed}")
-    return false if response.nil?
+    return false if response.body.nil? || response.body.empty?
     return false unless response.parsed_response
 
     form_response(response)
